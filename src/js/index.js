@@ -7,44 +7,54 @@ class Stage {
     constructor(width, height) {
         this.width = width;
         this.height = height;
-        this.stage = this.createStage; 
+        this.stage = this.createStage(); 
     };
 
     createStage() {
         const stageElm = document.createElement('div');
-        stageElm.classname = 'stage'
+        stageElm.className = 'stage'
         return stageElm; 
     };
 
     renderStageTo(element) {
+        console.log(element)
         element.appendChild(this.stage);
     }}
 
-const stage1 = new Stage(10, 10);
+const stage1 = new Stage(12, 6);
 stage1.renderStageTo(document.querySelector('div'))
 
 
 class Pacman {
-    constructor(xpos, ypos, mouth) {
-        this.xpos = xpos * TILE_SIZE;
-        this.ypos = ypos * TILE_SIZE;
+    constructor(stage, xpos, ypos, mouth) {
+        this.stage = stage;
+        this.xpos = xpos;
+        this.ypos = ypos;
         this.mouth = mouth;
         this.pac = this.createPacman()
     }
     actionOnRight() {
-        this.xpos += TILE_SIZE
+        if (this.xpos < this.stage.width -1) {
+            this.xpos += 1
+        }
         this.pac.style.backgroundPositionY = "0px"
     }
     actionOnLeft() {
-        this.xpos -= TILE_SIZE
+        if (this.xpos > 0) {
+            this.xpos -= 1
+        }
         this.pac.style.backgroundPositionY = "-85px"
     }
-    actionOnUp() {
-        this.ypos += TILE_SIZE
+    actionOnDown() {
+        if (this.ypos < this.stage.height - 1) {
+            this.ypos += 1
+        }
         this.pac.style.backgroundPositionY = "-170px"
     }
-    actionOnDown() {
-        this.ypos -= TILE_SIZE
+    actionOnUp() {
+        if (this.ypos > 0) {
+            this.ypos -= 1
+        }
         this.pac.style.backgroundPositionY = "-255px"
     }
 
@@ -54,14 +64,14 @@ class Pacman {
         } else if (event.code === 'ArrowLeft') {
             this.actionOnLeft()
         } else if (event.code === 'ArrowDown') {
-            this.actionOnUp()
-        } else if (event.code === 'ArrowUp') {
             this.actionOnDown()
+        } else if (event.code === 'ArrowUp') {
+            this.actionOnUp()
         }
     }
     update() {
-        this.pac.style.left = `${this.xpos}px`
-        this.pac.style.top = `${this.ypos}px`
+        this.pac.style.left = `${this.xpos * TILE_SIZE}px`
+        this.pac.style.top = `${this.ypos * TILE_SIZE}px`
     }
     createPacman() {
         const pacmanElm = document.createElement("div");
@@ -74,7 +84,8 @@ class Pacman {
     }
     renderTo(element) {
         element.appendChild(this.pac)
+        console.log(this.stage.height)
     }
 }   
-const pacman = new Pacman(10, 2.5, true)
+const pacman = new Pacman(stage1, 0, 0, true)
 pacman.renderTo(document.querySelector(".stage"))
