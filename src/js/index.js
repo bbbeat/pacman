@@ -88,37 +88,96 @@ class Pacman {
     }
 }
 
-class Entities{
+class entity{
     constructor(stage, xpos, ypos, type) {
+        this.stage = stage
         this.xpos = xpos;
         this.ypos = ypos;
         this.type = type;
         this.entity = this.createEntity();
+        this.renderEntityTo()
     };
 
     createEntity() {
         const entity = document.createElement('div');
         entity.className = `entity  entity--${this.type}`;
+        entity.style.left = `${this.xpos * TILE_SIZE}px` ;
+        entity.style.top = `${this.ypos * TILE_SIZE}px` ;
         return entity;
     };
 
-    renderEntityTo(element) {
-        console.log(element);
-        element.appendChild(this.entity);
-        // this.update();
+    renderEntityTo() {
+        this.stage.stage.appendChild(this.entity)
     }
 
-    // update(){
-    //     this.element.style.left = `${this.xpos * TILE_SIZE}px` ;
-    //     this.element.style.top = `${this.ypos * TILE_SIZE}px` ;
-    // }
+    
 }
 
 const pacman = new Pacman(stage1, 0, 0, true)
-pacman.renderTo(document.querySelector(".stage"))
+pacman.renderTo(stage1.stage)
 
 
 
-const wall = new Entities(stage1, 2, 2, "wall")
-wall.renderEntityTo(document.querySelector(".stage"))
+const enteties = [
+    new entity (stage1, -1, -1, "wall"),
+    new entity (stage1, 0, -1, "wall"),
+    new entity (stage1, 1, -1, "wall"),
+    new entity (stage1, 2, -1, "wall"),
+    new entity (stage1, 3, -1, "wall"),
+    new entity (stage1, 4, -1, "wall"),
+    new entity (stage1, 5, -1, "wall"),
+    new entity (stage1, 6, -1, "wall"),
+    new entity (stage1, 7, -1, "wall"),
+    new entity (stage1, 8, -1, "wall"),
+    new entity (stage1, 9, -1, "wall"),
+    new entity (stage1, 10, -1, "wall"),
+    new entity (stage1, 11, -1, "wall"),
+    new entity (stage1, 12, -1, "wall"),
+    new entity (stage1, -1, 6, "wall"),
+    new entity (stage1, 0, 6, "wall"),
+    new entity (stage1, 1, 6, "wall"),
+    new entity (stage1, 2, 6, "wall"),
+    new entity (stage1, 3, 6, "wall"),
+    new entity (stage1, 4, 6, "wall"),
+    new entity (stage1, 5, 6, "wall"),
+    new entity (stage1, 6, 6, "wall"),
+    new entity (stage1, 7, 6, "wall"),
+    new entity (stage1, 8, 6, "wall"),
+    new entity (stage1, 9, 6, "wall"),
+    new entity (stage1, 10, 6, "wall"),
+    new entity (stage1, 11, 6, "wall"),
+    new entity (stage1, 12, 6, "wall"),
+    new entity (stage1, -1, 0, "wall"),
+    new entity (stage1, -1, 1, "wall"),
+    new entity (stage1, -1, 2, "wall"),
+    new entity (stage1, -1, 3, "wall"),
+    new entity (stage1, -1, 4, "wall"),
+    new entity (stage1, -1, 5, "wall"),
+    new entity (stage1, 12, 0, "wall"),
+    new entity (stage1, 12, 1, "wall"),
+    new entity (stage1, 12, 2, "wall"),
+    new entity (stage1, 12, 3, "wall"),
+    new entity (stage1, 12, 4, "wall"),
+    new entity (stage1, 12, 5, "wall"),
+    new entity (stage1, 4, 3, "wall"),
+    new entity (stage1, 4, 4, "wall"),
+    new entity (stage1, 4, 5, "wall"),
+    new entity (stage1, 9, 0, "wall"),
+    new entity (stage1, 9, 1, "wall"),
+    new entity (stage1, 9, 2, "wall"),
+    new entity (stage1, 2, 0, "wall"),
+    new entity (stage1, 2, 1, "wall"),
+    new entity (stage1, 2, 2, "wall"),
+    new entity (stage1, 1, 4, "apple"),
+    new entity (stage1, 3, 3, "apple"),
+    new entity (stage1, 7, 4, "apple"),
+    new entity (stage1, 9, 3, "apple"),
+    new entity (stage1, 8, 0, "apple"),
+    new entity (stage1, 5, 5, "apple"),
+    new entity (stage1, 1, 3, "bomb"),
+    new entity (stage1, 5, 1, "bomb"),
+    new entity (stage1, 6, 1, "bomb"),
+    new entity (stage1, 1, 5, "bomb")
+]
+
 
