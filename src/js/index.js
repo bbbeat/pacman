@@ -17,8 +17,8 @@ class Pacman {
         this.xpos = xpos * TILE_SIZE;
         this.ypos = ypos * TILE_SIZE;
         this.mouth = mouth;
-    }
-};
+    };
+
     render() {
         const pacmanElm = document.createElement("div");
         pacmanElm.className = "entity entity--pac pacboy-active-light";
@@ -29,8 +29,9 @@ class Pacman {
                xpos += 85
            pac.style.left = `${xpos}px`
            }
-        }
-    }
-    moveRight() {
+        } 
+    };
 
-    }
+    moveRight() 
+    
+};
