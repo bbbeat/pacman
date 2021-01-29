@@ -86,6 +86,39 @@ class Pacman {
         element.appendChild(this.pac)
         console.log(this.stage.height)
     }
-}   
+}
+
+class Entities{
+    constructor(stage, xpos, ypos, type) {
+        this.xpos = xpos;
+        this.ypos = ypos;
+        this.type = type;
+        this.entity = this.createEntity();
+    };
+
+    createEntity() {
+        const entity = document.createElement('div');
+        entity.className = `entity  entity--${this.type}`;
+        return entity;
+    };
+
+    renderEntityTo(element) {
+        console.log(element);
+        element.appendChild(this.entity);
+        // this.update();
+    }
+
+    // update(){
+    //     this.element.style.left = `${this.xpos * TILE_SIZE}px` ;
+    //     this.element.style.top = `${this.ypos * TILE_SIZE}px` ;
+    // }
+}
+
 const pacman = new Pacman(stage1, 0, 0, true)
 pacman.renderTo(document.querySelector(".stage"))
+
+
+
+const wall = new Entities(stage1, 2, 2, "wall")
+wall.renderEntityTo(document.querySelector(".stage"))
+
