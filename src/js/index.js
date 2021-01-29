@@ -26,15 +26,32 @@ class Pacman {
         this.mouth = mouth;
         this.pac = this.createPacman()
     }
+    actionOnRight() {
+        this.xpos += TILE_SIZE
+        this.pac.style.backgroundPositionY = "0px"
+    }
+    actionOnLeft() {
+        this.xpos -= TILE_SIZE
+        this.pac.style.backgroundPositionY = "-85px"
+    }
+    actionOnUp() {
+        this.ypos += TILE_SIZE
+        this.pac.style.backgroundPositionY = "-170px"
+    }
+    actionOnDown() {
+        this.ypos -= TILE_SIZE
+        this.pac.style.backgroundPositionY = "-255px"
+    }
+
     move(event) {
         if (event.code === 'ArrowRight') {
-            this.xpos += TILE_SIZE
+            this.actionOnRight()
         } else if (event.code === 'ArrowLeft') {
-            this.xpos -= TILE_SIZE
+            this.actionOnLeft()
         } else if (event.code === 'ArrowDown') {
-            this.ypos += TILE_SIZE
+            this.actionOnUp()
         } else if (event.code === 'ArrowUp') {
-            this.ypos -= TILE_SIZE
+            this.actionOnDown()
         }
     }
     update() {
