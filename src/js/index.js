@@ -1,23 +1,28 @@
 'use strict';
 
 const TILE_SIZE = 85;
-// const pac = document.querySelector(".entity--pac")
-// document.addEventListener('keydown', move) 
-//  function move() {
-//     if(event.code === 'ArrowRight') {
-//         xpos += TILE_SIZE
-//     pac.style.left = `${xpos}px`
-//     } else if(event.code === 'ArrowLeft') {
-//         xpos -= TILE_SIZE
-//     pac.style.left = `${xpos}px`
-//     } else if(event.code === 'ArrowDown') {
-//         ypos += TILE_SIZE
-//     pac.style.top = `${ypos}px`
-//     } else if(event.code === 'ArrowUp') {
-//         ypos -= TILE_SIZE
-//     pac.style.top = `${ypos}px`
-//     }
-//  }
+
+
+class Stage {
+    constructor(width, height) {
+        this.width = width;
+        this.height = height;
+        this.stage = this.createStage; 
+    };
+
+    createStage() {
+        const stageElm = document.createElement('div');
+        stageElm.classname = 'stage'
+        return stageElm; 
+    };
+
+    renderStageTo(element) {
+        element.appendChild(this.stage);
+    }}
+
+const stage1 = new Stage(10, 10);
+stage1.renderStageTo(document.querySelector('div'))
+
 
 class Pacman {
     constructor(xpos, ypos, mouth) {
@@ -72,4 +77,4 @@ class Pacman {
     }
 }   
 const pacman = new Pacman(10, 2.5, true)
-pacman.renderTo(document.querySelector(".container"))
+pacman.renderTo(document.querySelector(".stage"))
