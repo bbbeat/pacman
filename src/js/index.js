@@ -24,7 +24,6 @@ class Pacman {
         this.xpos = xpos * TILE_SIZE;
         this.ypos = ypos * TILE_SIZE;
         this.mouth = mouth;
-<<<<<<< HEAD
         this.pac = this.createPacman()
     }
     move(event) {
@@ -57,23 +56,3 @@ class Pacman {
 }   
 const pacman = new Pacman(10, 2.5, true)
 pacman.renderTo(document.querySelector(".container"))
-=======
-    };
-
-    render() {
-        const pacmanElm = document.createElement("div");
-        pacmanElm.className = "entity entity--pac pacboy-active-light";
-        
-        document.addEventListener('keydown', moveRight) 
-        function moveRight() {
-           if(event.code === 'ArrowRight') {
-               xpos += 85
-           pac.style.left = `${xpos}px`
-           }
-        } 
-    };
-
-    moveRight() 
-    
-};
->>>>>>> fe3fa343b8e00a73c5e095d554557efcc099c4a8
